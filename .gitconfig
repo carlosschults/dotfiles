@@ -1,0 +1,22 @@
+[alias]
+	s = status
+	co = checkout
+	br = branch
+	sw = switch
+	last = log -1 HEAD --stat
+	cam = commit -am
+	c = commit
+    cm = commit -m
+	gl = config --global -l
+	amend = commit --amend
+	first = rev-list --max-parents=0 HEAD
+	f = fetch
+	l = log
+	lo = log --oneline
+    open = "!f() { REPO_URL=$(git config remote.origin.url); explorer ${REPO_URL%%.git}; }; f"
+    browse = !git open
+[user]
+	name = Carlos Schults
+	email = carlos@carlosschults.net
+[core]
+	editor = code --wait
