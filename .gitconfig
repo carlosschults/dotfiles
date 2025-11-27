@@ -1,22 +1,101 @@
-[alias]
-	s = status
-	co = checkout
-	br = branch
-	sw = switch
-	last = log -1 HEAD --stat
-	cam = commit -am
-	c = commit
-    cm = commit -m
-	gl = config --global -l
-	amend = commit --amend
-	first = rev-list --max-parents=0 HEAD
-	f = fetch
-	l = log
-	lo = log --oneline
-    open = "!f() { REPO_URL=$(git config remote.origin.url); explorer ${REPO_URL%%.git}; }; f"
-    browse = !git open
 [user]
-	name = Carlos Schults
-	email = carlos@carlosschults.net
+	name = Name
+	email = Email
+	signingkey = key
+[filter "lfs"]
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+[alias]
+    aa = "add ."
+    adog = log --all --decorate --oneline --graph
+    al = !git alias
+    alias = "!git config -l | grep ^alias\\. | cut -c 7-"
+    ame = !git am
+    amend = commit --amend
+    ane = commit --amend --no-edit
+    b = branch
+    ba = branch -a
+    browse = !git open
+    c = commit
+    ca = commit -a
+    cam = "commit -am"  
+    cm = "commit -m"
+    co = checkout
+    cob = checkout -b
+    cx = !git add -A && git commit -m
+    cp = cherry-pick
+    d = diff
+    del = branch -d
+    ec = config --global -e
+    emp = "commit --allow-empty"
+    f = fetch
+    fa = fetch -a
+    i = init
+    l = log
+    lo = log --oneline
+    m = merge
+    pl = pull
+    p = push
+    pf = push -f
+    re = rebase
+    ri = rebase -i
+    rem = remote -v
+    s = status
+    sa = !git save
+    save = !git add -A && git commit -m 'SAVEPOINT'
+    sw = switch
+    sy = !git sync
+    sync = !git pull --rebase && git push
+    op = !git open
+    open = "!f() { REPO_URL=$(git config remote.origin.url); explorer ${REPO_URL%%.git}; }; f"
+    undo = reset HEAD~1 --mixed
+    up = "!git push --set-upstream origin \"$(git rev-parse --abbrev-ref HEAD)\""
+    rec = rebase
+    first = rev-list --max-parents=0 HEAD
+    cb = rev-parse --abbrev-ref HEAD
+
 [core]
+    autocrlf = true
 	editor = code --wait
+[safe]
+	directory = C:/git/projects/carlosschults.net
+	directory = C:/git/blog
+[commit]
+	gpgsign = true
+[column]
+        ui = auto
+[branch]
+        sort = -committerdate
+[tag]
+        sort = version:refname
+[init]
+        defaultBranch = main
+[diff]
+        algorithm = histogram
+        colorMoved = plain
+        mnemonicPrefix = true
+        renames = true
+[push]
+        default = simple
+        autoSetupRemote = true
+        followTags = true
+[fetch]
+        prune = true
+        pruneTags = true
+        all = true
+
+[help]
+        autocorrect = prompt
+[commit]
+        verbose = true
+[rerere]
+        enabled = true
+        autoupdate = true
+[rebase]
+        autoSquash = true
+        autoStash = true
+        updateRefs = true
+[pull]
+        rebase = true
