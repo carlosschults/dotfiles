@@ -39,6 +39,8 @@
     pl = pull
     p = push
     pf = push -f
+	pr = !gh pr create --fill
+	pro = !gh pr create --fill --web
     re = rebase
     ri = rebase -i
     rem = remote -v
